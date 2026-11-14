@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: forgetlab
+    runtime: python
+    plan: 1c-2g
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app --bind 0.0.0.0:$PORT
+    healthCheckPath: /health
+    disk:
+      name: forgetlab-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: FORGETLAB_DATA_DIR
+        value: /var/data
+      - key: FORGETLAB_SECRET_KEY
+        generateValue: true

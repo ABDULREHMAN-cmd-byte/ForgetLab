@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Reports & Export | ForgetLab{% endblock %}
+{% block section_name %}Reports & Export{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">RESULTS / DOWNLOAD</p><h1>Reports &amp; Export</h1><p class="page-subtitle" id="reports-caption">Export the latest available experiment summary.</p></div><a class="button button-secondary" href="/history">Experiment history ↗</a></div>
+<section class="surface">
+    <div class="surface-heading"><div><h2>Latest report</h2><p id="report-status">Checking for a completed model run…</p></div><span class="pill" id="report-badge">Checking</span></div>
+    <div class="form-actions"><a class="button button-primary" id="export-json" href="/api/report/export/json">Download JSON</a><a class="button button-secondary" id="export-csv" href="/api/report/export/csv">Download CSV</a></div>
+</section>
+{% endblock %}

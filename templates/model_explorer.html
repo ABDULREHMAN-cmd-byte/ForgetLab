@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Model Explorer | ForgetLab{% endblock %}
+{% block section_name %}Model Explorer{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">TRAIN / INSPECT</p><h1>Model Explorer</h1><p class="page-subtitle" id="model-dataset-label">Train against the active dataset</p></div><a class="button button-secondary" href="/evaluation">Open evaluation ↗</a></div>
+<section class="surface">
+    <div class="surface-heading"><div><h2>Training configuration</h2><p>Metrics are calculated on the held-out test split.</p></div></div>
+    <div class="form-grid">
+        <label class="field" for="model-type">Estimator<select id="model-type"><option value="">Loading supported models…</option></select></label>
+        <label class="field" for="model-target">Target column<select id="model-target"><option value="income">income</option></select></label>
+    </div>
+    <p class="inline-status" id="model-task-type">Detected task: loading</p>
+    <div class="form-actions"><button class="button button-primary" id="train-model" type="button">Train model <span aria-hidden="true">↗</span></button><span class="inline-status" id="training-message" aria-live="polite">No training run in this session.</span></div>
+</section>
+<section class="surface">
+    <div class="surface-heading"><div><h2>Latest model</h2><p id="model-summary">No model results available.</p></div><span class="pill" id="model-badge">Not trained</span></div>
+    <div class="result-grid" id="model-metrics"></div>
+</section>
+<section class="chart-grid" style="margin-top:13px">
+    <article class="chart-card span-12"><div class="chart-heading"><div><span class="chart-index">01</span><h2>Feature importance</h2></div><span class="chart-unit">FITTED PIPELINE</span></div><div class="chart-slot tall" id="model-importance"></div></article>
+    <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">02</span><h2>Actual vs predicted</h2></div><span class="chart-unit">REGRESSION</span></div><div class="chart-slot" id="model-actual-predicted"></div></article>
+    <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">03</span><h2>Residuals</h2></div><span class="chart-unit">REGRESSION</span></div><div class="chart-slot" id="model-residuals"></div></article>
+</section>
+{% endblock %}

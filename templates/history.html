@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Experiment History | ForgetLab{% endblock %}
+{% block section_name %}Experiment History{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">WORKSPACE / ACTIVITY</p><h1>Experiment History</h1><p class="page-subtitle">Database-backed training runs and experiment records.</p></div><button class="button button-secondary" id="history-refresh" type="button">Refresh history</button></div>
+<section class="surface"><div class="surface-heading"><div><h2>Recent experiments</h2><p id="history-count">Loading records…</p></div></div><div class="experiment-list" id="history-list"><div class="loading-state"><span class="loader"></span><strong>Loading experiments</strong></div></div></section>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Documentation | ForgetLab{% endblock %}
+{% block section_name %}Documentation{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">REFERENCE / METHODS</p><h1>Documentation</h1><p class="page-subtitle">ForgetLab workflow and metric definitions.</p></div></div>
+<section class="surface doc-content">
+    <h2>Data and training</h2>
+    <p>The default dataset is the UCI Adult Census Income data. Uploaded CSV files become the active dataset for the current application process. The target column is selected in Dataset Explorer.</p>
+    <p>Models are trained with a reproducible 80/20 split. Accuracy, precision, recall, F1, confusion matrix, ROC, precision–recall, AUC, and feature importance are computed from the held-out portion.</p>
+    <h2>Unlearning methods</h2>
+    <p>Exact retraining removes the selected rows and fits a new model as a reference baseline. Approximate SGD is experimental and must not be interpreted as a formal privacy guarantee.</p>
+    <h2>Interpretation</h2>
+    <p>Dashboard values reflect completed work in the current process. Empty charts indicate that a required model run has not yet been performed. The forgetting and retention counts refer to the current active dataset selection.</p>
+    <h2>API surface</h2>
+    <p>Dataset routes: <code>/api/dataset</code>, <code>/api/dataset/preview</code>, and <code>/api/dataset/upload</code>. Model and experiment routes: <code>/api/train</code>, <code>/api/unlearn</code>, <code>/api/dashboard</code>, and <code>/api/history</code>. Reports are available from <code>/api/report/export/json</code> and <code>/api/report/export/csv</code>.</p>
+</section>
+{% endblock %}

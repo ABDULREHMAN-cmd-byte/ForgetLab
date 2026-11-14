@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Dataset Explorer | ForgetLab{% endblock %}
+{% block section_name %}Dataset Explorer{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">DATA / PROFILE</p><h1>Dataset Explorer</h1><p class="page-subtitle" id="dataset-caption">Loading active dataset…</p></div><a class="button button-secondary" href="/">Back to overview</a></div>
+<section class="surface">
+    <div class="surface-heading"><div><h2>Active dataset</h2><p id="dataset-name">UCI Adult Census Income</p><p class="experiment-meta" id="dataset-source">Loading dataset source…</p><p class="experiment-meta" id="dataset-task">Detected task: loading</p></div><span class="pill" id="dataset-status"><span class="status-dot"></span>Connecting</span></div>
+    <div class="metadata-grid"><div class="metadata-item"><span>Records</span><strong id="dataset-rows">—</strong></div><div class="metadata-item"><span>Features</span><strong id="dataset-columns">—</strong></div><div class="metadata-item"><span>Target</span><strong id="dataset-target-current">—</strong></div><div class="metadata-item"><span>Missing cells</span><strong id="dataset-missing">—</strong></div></div>
+    <form id="upload-form">
+        <div class="form-grid">
+            <label class="field" for="active-dataset">Available dataset<select id="active-dataset"><option value="">Loading available datasets…</option></select></label>
+            <label class="field full" for="dataset-file">Upload CSV<input id="dataset-file" name="file" type="file" accept=".csv" required></label>
+            <label class="field" for="target-column">Prediction target<select id="target-column"><option value="">Loading columns…</option></select></label>
+        </div>
+        <div class="form-actions"><button class="button button-primary" id="upload-button" type="submit">Upload dataset</button><button class="button button-secondary" id="target-button" type="button">Set target</button><span class="inline-status" id="dataset-message" aria-live="polite"></span></div>
+    </form>
+</section>
+<section class="surface">
+    <div class="surface-heading"><div><h2>Row preview</h2><p id="preview-count">First 20 records</p></div></div>
+    <div class="table-scroll"><table class="data-table"><thead id="preview-head"></thead><tbody id="preview-body"><tr><td class="table-empty">Loading dataset preview…</td></tr></tbody></table></div>
+</section>
+{% endblock %}

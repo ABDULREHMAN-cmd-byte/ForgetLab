@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Overview | ForgetLab{% endblock %}
+{% block section_name %}Overview{% endblock %}
+{% block content %}
+<div class="page-heading">
+    <div><p class="eyebrow">MODEL INTELLIGENCE / LIVE WORKSPACE</p><h1>Overview</h1><p class="page-subtitle" id="overview-subtitle">UCI Adult Census Income · waiting for live data</p></div>
+    <div class="heading-actions"><a class="button button-secondary" href="/datasets">Explore dataset</a><a class="button button-primary" href="/model-explorer">Train a model <span aria-hidden="true">↗</span></a></div>
+</div>
+<div class="notice notice-info" id="model-empty" hidden><span class="notice-mark">i</span><span>No model results yet. Train a model to populate evaluation charts with held-out predictions.</span><a href="/model-explorer">Open Model Explorer ↗</a></div>
+<div class="kpi-grid" id="overview-kpis" aria-live="polite">
+    <article class="kpi-card" data-kpi="records"><div class="kpi-top"><span>Total records</span><span class="kpi-icon icon-violet">▤</span></div><strong class="kpi-value skeleton" id="kpi-records">—</strong><small id="kpi-columns">Dataset rows</small></article>
+    <article class="kpi-card" data-kpi="accuracy"><div class="kpi-top"><span>Model accuracy</span><span class="kpi-icon icon-cyan">⌁</span></div><strong class="kpi-value skeleton" id="kpi-accuracy">—</strong><small id="kpi-model">No trained model</small></article>
+    <article class="kpi-card" data-kpi="forgotten"><div class="kpi-top"><span>Forgotten records</span><span class="kpi-icon icon-pink">◉</span></div><strong class="kpi-value skeleton" id="kpi-forgotten">—</strong><small id="kpi-retained">No unlearning run</small></article>
+    <article class="kpi-card" data-kpi="runtime"><div class="kpi-top"><span>Latest run time</span><span class="kpi-icon icon-amber">◷</span></div><strong class="kpi-value skeleton" id="kpi-runtime">—</strong><small id="kpi-runtime-detail">Training / unlearning</small></article>
+</div>
+<div class="filter-row">
+    <div class="filter-group"><label for="chart-scope">Chart scope</label><select id="chart-scope"><option value="all">All analytics</option><option value="model">Model evaluation</option><option value="dataset">Dataset profile</option><option value="unlearning">Unlearning</option></select></div>
+    <div class="data-stamp"><span class="status-dot"></span><span id="data-source">Connecting to ForgetLab API…</span></div>
+</div>
+<div class="chart-grid" id="dashboard-charts">
+    <article class="chart-card span-6" data-category="model"><div class="chart-heading"><div><span class="chart-index">01</span><h2>Model accuracy</h2></div><span class="chart-unit">HELD-OUT</span></div><div class="chart-slot" id="chart-accuracy"></div></article>
+    <article class="chart-card span-6" data-category="model"><div class="chart-heading"><div><span class="chart-index">02</span><h2>Precision · Recall · F1</h2></div><span class="chart-unit">SCORE</span></div><div class="chart-slot" id="chart-metrics"></div></article>
+    <article class="chart-card span-6" data-category="model"><div class="chart-heading"><div><span class="chart-index">03</span><h2>Confusion matrix</h2></div><span class="chart-unit">TEST SET</span></div><div class="chart-slot" id="chart-confusion"></div></article>
+    <article class="chart-card span-6" data-category="model"><div class="chart-heading"><div><span class="chart-index">04</span><h2>ROC curve</h2></div><span class="chart-unit" id="auc-label">AUC —</span></div><div class="chart-slot" id="chart-roc"></div></article>
+    <article class="chart-card span-6" data-category="model"><div class="chart-heading"><div><span class="chart-index">05</span><h2>Precision–recall curve</h2></div><span class="chart-unit">TEST SET</span></div><div class="chart-slot" id="chart-pr"></div></article>
+    <article class="chart-card span-6" data-category="dataset"><div class="chart-heading"><div><span class="chart-index">06</span><h2>Dataset distribution</h2></div><span class="chart-unit" id="target-label">TARGET</span></div><div class="chart-slot" id="chart-distribution"></div></article>
+    <article class="chart-card span-6" data-category="dataset"><div class="chart-heading"><div><span class="chart-index">07</span><h2>Missing values</h2></div><span class="chart-unit">NULL COUNT</span></div><div class="chart-slot" id="chart-missing"></div></article>
+    <article class="chart-card span-6" data-category="dataset"><div class="chart-heading"><div><span class="chart-index">08</span><h2>Feature correlation</h2></div><span class="chart-unit">NUMERIC FEATURES</span></div><div class="chart-slot" id="chart-correlation"></div></article>
+    <article class="chart-card span-6" data-category="model"><div class="chart-heading"><div><span class="chart-index">09</span><h2>Feature importance</h2></div><span class="chart-unit">TOP FEATURES</span></div><div class="chart-slot" id="chart-importance"></div></article>
+    <article class="chart-card span-6" data-category="unlearning"><div class="chart-heading"><div><span class="chart-index">10</span><h2>Forget / retain balance</h2></div><span class="chart-unit">RECORDS</span></div><div class="chart-slot" id="chart-forgetting"></div></article>
+    <article class="chart-card span-6" data-category="unlearning"><div class="chart-heading"><div><span class="chart-index">11</span><h2>Unlearning comparison</h2></div><span class="chart-unit">REAL RUNS ONLY</span></div><div class="chart-slot" id="chart-methods"></div></article>
+    <article class="chart-card span-6" data-category="unlearning"><div class="chart-heading"><div><span class="chart-index">12</span><h2>Execution time</h2></div><span class="chart-unit">SECONDS</span></div><div class="chart-slot" id="chart-timings"></div></article>
+</div>
+{% endblock %}

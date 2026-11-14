@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "ForgetLab pytest",
+			"type": "shell",
+			"command": "cd /d \"D:\\Forget Lab\" && .\\.venv\\Scripts\\python.exe -m pytest -q",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "ForgetLab target verification",
+			"type": "shell",
+			"command": "cd /d \"D:\\Forget Lab\" && .\\.venv\\Scripts\\python.exe -c \"from machine_learning.dataset_manager import load_uci_adult_dataset; from machine_learning.preprocessing import detect_target_task; from machine_learning.train import train_model; from machine_learning.unlearn import exact_retraining_unlearning, approximate_unlearning_experiment; from pathlib import Path; import json; path = Path('dataset'); df, train_idx, test_idx = load_uci_adult_dataset(path/'adult.data', path/'adult.test'); targets = ['income','age','workclass','education','occupation','hours-per-week','education-num','marital-status','capital-gain','native-country']; results = []; for target in targets: task = detect_target_task(df[target]); model = 'logistic_regression' if task.endswith('classification') else 'linear_regression'; result = train_model(model, df, target, train_indices=train_idx, test_indices=test_idx); exact = exact_retraining_unlearning(df, target, train_idx[:2], model_name=model, train_indices=train_idx, test_indices=test_idx); approx = None; try: approx_model = 'sgd_classifier' if task.endswith('classification') else 'sgd_regressor'; approx = approximate_unlearning_experiment(df, target, train_idx[:2], model_name=approx_model, train_indices=train_idx, test_indices=test_idx); except Exception as e: approx = {'supported': False, 'reason': str(e)}; results.append({'target': target, 'task': task, 'model': model, 'train_metrics': sorted(result['metrics'].keys()), 'exact_ok': isinstance(exact.get('unlearned_metrics'), dict), 'approx_ok': isinstance(approx, dict) and approx.get('approximate_metrics') is not None if isinstance(approx, dict) else False, 'approx_status': 'supported' if isinstance(approx, dict) and approx.get('approximate_metrics') is not None else ('unsupported' if isinstance(approx, dict) else 'error')}) ; print(json.dumps(results, indent=2, default=str))\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "ForgetLab target coverage check",
+			"type": "shell",
+			"command": "cd /d \"D:\\Forget Lab\" && set PYTHONPATH=. && .\\.venv\\Scripts\\python.exe \"c:\\Users\\USER\\.copilot\\session-state\\44f18826-b7a9-4c98-bd20-0b69f2d0b8d2\\files\\verify_targets.py\"",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

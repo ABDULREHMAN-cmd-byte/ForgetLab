@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Evaluation Center | ForgetLab{% endblock %}
+{% block section_name %}Evaluation Center{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">EVALUATION / HELD-OUT TEST</p><h1>Evaluation Center</h1><p class="page-subtitle" id="evaluation-caption">Metrics appear after a model has been trained.</p></div><a class="button button-primary" href="/model-explorer">Train or refresh model ↗</a></div>
+<div class="notice notice-info" id="evaluation-empty" hidden><span class="notice-mark">i</span><span>No fitted model is available for this session. Evaluation charts need held-out predictions.</span></div>
+<div class="result-grid" id="evaluation-metrics"></div>
+<div class="chart-grid" style="margin-top:13px">
+    <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">01</span><h2>Confusion matrix</h2></div><span class="chart-unit">HELD-OUT</span></div><div class="chart-slot" id="eval-confusion"></div></article>
+    <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">02</span><h2>ROC curve</h2></div><span class="chart-unit" id="eval-auc">AUC —</span></div><div class="chart-slot" id="eval-roc"></div></article>
+    <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">03</span><h2>Precision–recall curve</h2></div><span class="chart-unit">HELD-OUT</span></div><div class="chart-slot" id="eval-pr"></div></article>
+    <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">04</span><h2>Metric comparison</h2></div><span class="chart-unit">SCORES</span></div><div class="chart-slot" id="eval-comparison"></div></article>
+    <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">05</span><h2>Actual vs predicted</h2></div><span class="chart-unit">REGRESSION</span></div><div class="chart-slot" id="eval-actual-predicted"></div></article>
+    <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">06</span><h2>Residuals</h2></div><span class="chart-unit">REGRESSION</span></div><div class="chart-slot" id="eval-residuals"></div></article>
+</div>
+{% endblock %}

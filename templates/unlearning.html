@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Unlearning Analytics | ForgetLab{% endblock %}
+{% block section_name %}Unlearning Analytics{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">DELETE / COMPARE</p><h1>Unlearning Analytics</h1><p class="page-subtitle" id="unlearning-dataset-label">Select records from the active dataset.</p></div><a class="button button-secondary" href="/evaluation">Evaluation center ↗</a></div>
+<div class="notice notice-warning"><span class="notice-mark">!</span><span>Approximate unlearning is an experiment, not a formal privacy or deletion guarantee.</span></div>
+<section class="surface">
+    <div class="surface-heading"><div><h2>Request unlearning</h2><p>Exact retraining is the reference baseline. Approximate SGD is experimental.</p></div></div>
+    <div class="form-grid">
+        <label class="field" for="unlearning-method">Method<select id="unlearning-method"><option value="exact">Exact retraining</option><option value="approximate">Approximate SGD experiment</option></select></label>
+        <label class="field" for="unlearning-model">Estimator<select id="unlearning-model"><option value="">Loading supported models…</option></select></label>
+        <label class="field" for="forget-count">Records to forget<input id="forget-count" type="number" min="1" value="2" step="1" required></label>
+        <label class="field" for="unlearning-target">Active target<select id="unlearning-target"><option value="">Loading active target…</option></select></label>
+    </div>
+    <div class="form-actions"><button class="button button-secondary" id="select-visible" type="button">Select all on page</button><button class="button button-secondary" id="clear-selection" type="button">Clear selection</button><span class="inline-status" id="selection-count" aria-live="polite">Loading training rows…</span></div>
+    <div class="table-scroll">
+        <table class="data-table"><thead id="training-record-head"></thead><tbody id="training-record-body"><tr><td class="table-empty">Loading training records…</td></tr></tbody></table>
+    </div>
+    <div class="form-actions"><button class="button button-secondary" id="selection-prev" type="button" disabled>Previous</button><span class="inline-status" id="selection-page">Page —</span><button class="button button-secondary" id="selection-next" type="button" disabled>Next</button></div>
+    <div class="form-actions"><button class="button button-primary" id="run-unlearning" type="button">Run unlearning</button><span class="inline-status" id="unlearning-message" aria-live="polite">Select training records to continue.</span></div>
+</section>
+<section class="surface">
+    <div class="surface-heading"><div><h2>Latest comparison</h2><p id="unlearning-summary">No unlearning run available.</p></div><span class="pill" id="unlearning-badge">Not run</span></div>
+    <div class="result-grid">
+        <div class="result-metric"><span>Selected model</span><strong id="unlearning-model-result">—</strong></div>
+        <div class="result-metric"><span>Target column</span><strong id="unlearning-target-result">—</strong></div>
+        <div class="result-metric"><span>Method</span><strong id="method-result">—</strong></div>
+        <div class="result-metric"><span>Forgotten records</span><strong id="forgot-count-result">—</strong></div>
+        <div class="result-metric"><span>Remaining training records</span><strong id="remaining-count-result">—</strong></div>
+        <div class="result-metric"><span id="original-performance-label">Original performance</span><strong id="original-performance-result">—</strong></div>
+        <div class="result-metric"><span id="post-performance-label">Post-unlearning performance</span><strong id="post-performance-result">—</strong></div>
+        <div class="result-metric"><span id="unlearning-delta-label">Metric delta</span><strong id="accuracy-delta">—</strong></div>
+        <div class="result-metric"><span>Retraining time</span><strong id="retraining-time-result">—</strong></div>
+        <div class="result-metric"><span>Unlearning execution time</span><strong id="unlearning-time-result">—</strong></div>
+    </div>
+    <div class="chart-grid" style="margin-top:13px">
+        <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">01</span><h2>Before vs after performance</h2></div><span class="chart-unit">HELD-OUT</span></div><div class="chart-slot" id="unlearning-comparison"></div></article>
+        <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">02</span><h2>Exact vs approximate execution time</h2></div><span class="chart-unit">REAL RUNS</span></div><div class="chart-slot" id="unlearning-method-times"></div></article>
+        <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">03</span><h2>Forgotten vs remaining training records</h2></div><span class="chart-unit">RECORDS</span></div><div class="chart-slot" id="unlearning-record-balance"></div></article>
+        <article class="chart-card span-6"><div class="chart-heading"><div><span class="chart-index">04</span><h2>Method performance comparison</h2></div><span class="chart-unit">REAL RUNS</span></div><div class="chart-slot" id="unlearning-method-performance"></div></article>
+    </div>
+</section>
+<section class="surface">
+    <div class="surface-heading"><div><h2>Saved unlearning experiments</h2><p>Completed comparisons loaded from the experiment database.</p></div></div>
+    <div class="experiment-list" id="unlearning-history"><div class="chart-empty"><strong>No saved unlearning runs</strong><span>Completed exact or supported approximate runs will appear here.</span></div></div>
+</section>
+{% endblock %}
